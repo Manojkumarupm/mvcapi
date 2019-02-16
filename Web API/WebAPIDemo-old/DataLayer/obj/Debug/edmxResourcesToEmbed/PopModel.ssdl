@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PODbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="SUPPLIER">
+    <Key>
+      <PropertyRef Name="SUPLNO" />
+    </Key>
+    <Property Name="SUPLNO" Type="char" MaxLength="4" Nullable="false" />
+    <Property Name="SUPLNAME" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="SUPLADDR" Type="varchar" MaxLength="40" />
+  </EntityType>
+  <EntityContainer Name="PODbModelStoreContainer">
+    <EntitySet Name="SUPPLIER" EntityType="Self.SUPPLIER" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

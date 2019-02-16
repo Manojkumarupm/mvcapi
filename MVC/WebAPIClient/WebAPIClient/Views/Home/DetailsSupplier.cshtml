@@ -1,0 +1,42 @@
+﻿@model WebAPIClient.Models.SUPPLIER
+
+@{
+    ViewBag.Title = "DetailsSupplier";
+}
+
+<h2>DetailsSupplier</h2>
+
+<div>
+    <h4>SUPPLIER</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SUPLNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SUPLNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SUPLNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SUPLNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SUPLADDR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SUPLADDR)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditSupplier", new {   id = Model.SUPLNO  }) |
+    @Html.ActionLink("Back to List", "ViewSupplier")
+</p>

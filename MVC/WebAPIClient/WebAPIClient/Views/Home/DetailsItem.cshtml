@@ -1,0 +1,42 @@
+﻿@model WebAPIClient.Models.ITEM
+
+@{
+    ViewBag.Title = "DetailsItem";
+}
+
+<h2>DetailsItem</h2>
+
+<div>
+    <h4>ITEM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ITCODE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ITCODE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ITDESC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ITDESC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ITRATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ITRATE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditItem", new {  id = Model.ITCODE }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

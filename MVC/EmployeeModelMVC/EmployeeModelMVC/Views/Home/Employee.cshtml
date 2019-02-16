@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Index";
+    IEnumerable<EmployeeModelMVC.Models.EmployeeLeaveDeail> employeeLeaveDetails = ViewData["employeeDetails"] as IEnumerable<EmployeeModelMVC.Models.EmployeeLeaveDeail>;
+    IEnumerable<EmployeeModelMVC.Models.EmployeesLeaveTracking> EmployeesLeaveTrackings = ViewData["EmployeeLeaveDeail"] as IEnumerable<EmployeeModelMVC.Models.EmployeesLeaveTracking>;
+}
+
+<h2>Index</h2>
+<table>
+    <tr>
+        <th>FirstName</th>
+        <th>LeaveBalances</th>
+        <th>SupervisorID</th>
+    </tr>
+    @foreach (EmployeeModelMVC.Models.EmployeeLeaveDeail LeaveDetail in employeeLeaveDetails)
+    {
+        <tr>
+            <td>@LeaveDetail.UserProfile.FirstName</td>
+            <td>@LeaveDetail.LeaveBalances</td>
+            <td>@LeaveDetail.SupervisorId</td>
+        </tr>
+    }
+</table>
+
+<table class="table">
+    <tr>
+        <th>EmployeeName</th>
+        <th>EmployeeId</th>
+        <th>LeaveFomDate</th>
+        <th>LeaveToDate</th>
+        <th>IsApproved</th>
+        <th>Comments</th>
+    </tr>
+    @foreach (EmployeeModelMVC.Models.EmployeesLeaveTracking leaveTracking in EmployeesLeaveTrackings)
+    {
+        <tr>
+            <td>@leaveTracking.UserProfile.FirstName</td>
+            <td>@leaveTracking.UserId</td>
+            <td>@leaveTracking.LeaveFromDate</td>
+            <td>@leaveTracking.LeaveToDate</td>
+            <td>@leaveTracking.IsApproved</td>
+            <td> @leaveTracking.Comments</td>
+        </tr>
+    }
+    @Html.ActionLink("Apply", "ApplyLeave", new { id = EmployeesLeaveTrackings.First().UserId }) 
+</table>

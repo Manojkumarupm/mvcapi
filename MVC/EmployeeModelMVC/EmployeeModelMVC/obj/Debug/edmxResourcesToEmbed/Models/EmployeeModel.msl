@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FSEModelStoreContainer" CdmEntityContainer="FSEEntities">
+    <EntitySetMapping Name="EmployeeLeaveDeails">
+      <EntityTypeMapping TypeName="FSEModel.EmployeeLeaveDeail">
+        <MappingFragment StoreEntitySet="EmployeeLeaveDeails">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="LeaveBalances" ColumnName="LeaveBalances" />
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeesLeaveTrackings">
+      <EntityTypeMapping TypeName="FSEModel.EmployeesLeaveTracking">
+        <MappingFragment StoreEntitySet="EmployeesLeaveTracking">
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+          <ScalarProperty Name="RowId" ColumnName="RowId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="LeaveFromDate" ColumnName="LeaveFromDate" />
+          <ScalarProperty Name="LeaveToDate" ColumnName="LeaveToDate" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserProfiles">
+      <EntityTypeMapping TypeName="FSEModel.UserProfile">
+        <MappingFragment StoreEntitySet="UserProfile">
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="WorkingArea" ColumnName="WorkingArea" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

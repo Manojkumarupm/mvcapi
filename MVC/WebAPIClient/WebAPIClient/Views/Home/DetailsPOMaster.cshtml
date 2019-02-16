@@ -1,0 +1,74 @@
+﻿@model WebAPIClient.Models.POInformation
+
+@{
+    ViewBag.Title = "DetailsPOMaster";
+}
+
+<h2>DetailsPOMaster</h2>
+
+<div>
+    <h4>POInformation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PONO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PONO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ITCODE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ITCODE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QTY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QTY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PODATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PODATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SUPLNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SUPLNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SUPLNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SUPLNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ITDESC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ITDESC)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditPOMaster", new { id = Model.PONO   }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

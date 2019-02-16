@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TweeterModelStoreContainer" CdmEntityContainer="TweeterEntities1">
+    <EntitySetMapping Name="followings">
+      <EntityTypeMapping TypeName="TweeterModel.following">
+        <MappingFragment StoreEntitySet="following">
+          <ScalarProperty Name="following_id" ColumnName="following_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="FId" ColumnName="FId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="TweeterModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="Joined" ColumnName="Joined" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tweets">
+      <EntityTypeMapping TypeName="TweeterModel.tweet">
+        <MappingFragment StoreEntitySet="tweet">
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="tweet_id" ColumnName="tweet_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

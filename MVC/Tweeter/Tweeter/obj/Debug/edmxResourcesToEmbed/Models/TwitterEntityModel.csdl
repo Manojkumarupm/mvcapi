@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TweeterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TweeterEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="followings" EntityType="TweeterModel.following" />
+    <EntitySet Name="People" EntityType="TweeterModel.Person" />
+    <EntitySet Name="tweets" EntityType="TweeterModel.tweet" />
+    <AssociationSet Name="FK__following__user___173876EA" Association="TweeterModel.FK__following__user___173876EA">
+      <End Role="Person" EntitySet="People" />
+      <End Role="following" EntitySet="followings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tweet__user_id__0519C6AF" Association="TweeterModel.FK__tweet__user_id__0519C6AF">
+      <End Role="Person" EntitySet="People" />
+      <End Role="tweet" EntitySet="tweets" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="following">
+    <Key>
+      <PropertyRef Name="FId" />
+    </Key>
+    <Property Name="FId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="following_id" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Person" Relationship="TweeterModel.FK__following__user___173876EA" FromRole="following" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fullName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Joined" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="followings" Relationship="TweeterModel.FK__following__user___173876EA" FromRole="Person" ToRole="following" />
+    <NavigationProperty Name="tweets" Relationship="TweeterModel.FK__tweet__user_id__0519C6AF" FromRole="Person" ToRole="tweet" />
+  </EntityType>
+  <EntityType Name="tweet">
+    <Key>
+      <PropertyRef Name="tweet_id" />
+    </Key>
+    <Property Name="tweet_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="message" Type="String" Nullable="false" MaxLength="140" FixedLength="false" Unicode="false" />
+    <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Person" Relationship="TweeterModel.FK__tweet__user_id__0519C6AF" FromRole="tweet" ToRole="Person" />
+  </EntityType>
+  <Association Name="FK__following__user___173876EA">
+    <End Type="TweeterModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="TweeterModel.following" Role="following" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="following">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tweet__user_id__0519C6AF">
+    <End Type="TweeterModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="TweeterModel.tweet" Role="tweet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="tweet">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

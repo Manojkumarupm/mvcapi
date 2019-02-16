@@ -1,0 +1,86 @@
+﻿@model Tweeter.Models.EditProfile
+@{
+    if (ViewContext.IsChildAction != true && !Request.IsAjaxRequest())
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+    }
+    else
+    {
+        Layout = null;
+    }
+}
+
+@{
+    ViewBag.Title = "Details";
+}
+<head>
+    <title>ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" language="javascript">
+        var urlContent = "@Url.Content("~/")";
+    </script>
+</head>
+
+
+
+<div class="content">
+    <h2> You can do the actions over your profile </h2>
+    <p style="float:right">
+        @Html.ActionLink("Change Password", "ChangePassword") |
+        @Html.ActionLink("Edit Profile", "Edit") |
+        @Html.ActionLink("Profile Details", "Details") |
+        @Html.ActionLink("Delete Profile", "Delete")
+    </p>
+
+    <h4 style="color:skyblue">Profile details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emailID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emailID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Joined)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Joined)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.active)
+        </dd>
+
+    </dl>
+    <div>
+        @Html.ActionLink("Back to Home", "Index", "Home")
+    </div>
+</div>
+
+ 
+

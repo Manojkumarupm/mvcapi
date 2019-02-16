@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TweeterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="following">
+    <Key>
+      <PropertyRef Name="FId" />
+    </Key>
+    <Property Name="FId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="following_id" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fullName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Joined" Type="datetime" Nullable="false" />
+    <Property Name="active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tweet">
+    <Key>
+      <PropertyRef Name="tweet_id" />
+    </Key>
+    <Property Name="tweet_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="message" Type="varchar" MaxLength="140" Nullable="false" />
+    <Property Name="created" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__following__user___173876EA">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="following" Type="Self.following" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="following">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tweet__user_id__0519C6AF">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="tweet" Type="Self.tweet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="tweet">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TweeterModelStoreContainer">
+    <EntitySet Name="following" EntityType="Self.following" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tweet" EntityType="Self.tweet" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__following__user___173876EA" Association="Self.FK__following__user___173876EA">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="following" EntitySet="following" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tweet__user_id__0519C6AF" Association="Self.FK__tweet__user_id__0519C6AF">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="tweet" EntitySet="tweet" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

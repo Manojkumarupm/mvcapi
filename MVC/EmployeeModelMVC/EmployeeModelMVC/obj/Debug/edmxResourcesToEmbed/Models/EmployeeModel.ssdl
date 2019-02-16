@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FSEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="EmployeeLeaveDeails">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="LeaveBalances" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SupervisorId" Type="int" />
+  </EntityType>
+  <EntityType Name="EmployeesLeaveTracking">
+    <Key>
+      <PropertyRef Name="RowId" />
+    </Key>
+    <Property Name="RowId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="LeaveFromDate" Type="date" Nullable="false" />
+    <Property Name="LeaveToDate" Type="date" Nullable="false" />
+    <Property Name="IsApproved" Type="bit" />
+    <Property Name="Comments" Type="varchar" MaxLength="255" />
+    <Property Name="SupervisorId" Type="int" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="WorkingArea" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Email" Type="varchar" MaxLength="150" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="EmployeeLeaveManagementSystemForegin">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+    <End Role="EmployeesLeaveTracking" Type="Self.EmployeesLeaveTracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="EmployeesLeaveTracking">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeLeaveManagementSystemForeginTracking">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+    <End Role="EmployeeLeaveDeails" Type="Self.EmployeeLeaveDeails" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="EmployeeLeaveDeails">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeLeaveManagementSystemForeginTrackingSupervisor">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+    <End Role="EmployeeLeaveDeails" Type="Self.EmployeeLeaveDeails" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="EmployeeLeaveDeails">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FSEModelStoreContainer">
+    <EntitySet Name="EmployeeLeaveDeails" EntityType="Self.EmployeeLeaveDeails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeesLeaveTracking" EntityType="Self.EmployeesLeaveTracking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="EmployeeLeaveManagementSystemForegin" Association="Self.EmployeeLeaveManagementSystemForegin">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="EmployeesLeaveTracking" EntitySet="EmployeesLeaveTracking" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeLeaveManagementSystemForeginTracking" Association="Self.EmployeeLeaveManagementSystemForeginTracking">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="EmployeeLeaveDeails" EntitySet="EmployeeLeaveDeails" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeLeaveManagementSystemForeginTrackingSupervisor" Association="Self.EmployeeLeaveManagementSystemForeginTrackingSupervisor">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="EmployeeLeaveDeails" EntitySet="EmployeeLeaveDeails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

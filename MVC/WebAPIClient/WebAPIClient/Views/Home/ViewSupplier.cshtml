@@ -1,0 +1,50 @@
+﻿@model IEnumerable<WebAPIClient.Models.SUPPLIER>
+
+@{
+    ViewBag.Title = "ViewSupplier";
+}
+
+<h2>ViewSupplier</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateSupplier")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SUPLNO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SUPLNAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SUPLADDR)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SUPLNO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SUPLNAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SUPLADDR)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditSupplier", new { id = item.SUPLNO }) |
+            @Html.ActionLink("Details", "DetailsSupplier", new { id = item.SUPLNO }) |
+            
+            @Html.ActionLink(
+                   "Delete",
+                   "DeleteSupplier",
+                   new { id = item.SUPLNO },
+                   new { onclick = "return confirm('Are you sure you wish to delete this Supplier ?');" })
+        </td>
+    </tr>
+}
+
+</table>

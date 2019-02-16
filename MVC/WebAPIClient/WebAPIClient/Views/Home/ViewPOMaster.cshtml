@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebAPIClient.Models.POMASTER>
+
+@{
+    ViewBag.Title = "ViewPOMaster";
+}
+
+<h2>ViewPOMaster</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreatePOMaster")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PONO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PODATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SUPLNO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PONO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PODATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SUPLNO)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditPOMaster", new { id = item.PONO }) |
+            @Html.ActionLink("Details", "DetailsPOMaster", new { id = item.PONO }) |
+            @Html.ActionLink(
+                  "Delete",
+                  "DeletePOMaster",
+                  new { id = item.PONO },
+                  new { onclick = "return confirm('Are you sure you wish to delete this POMaster ?');" })
+        </td>
+    </tr>
+}
+
+</table>

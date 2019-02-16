@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FSEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="EmployeeLeaveDeail">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="LeaveBalances" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SupervisorId" Type="Int32" />
+    <NavigationProperty Name="UserProfile" Relationship="FSEModel.EmployeeLeaveManagementSystemForeginTracking" FromRole="EmployeeLeaveDeail" ToRole="UserProfile" />
+    <NavigationProperty Name="UserProfile1" Relationship="FSEModel.EmployeeLeaveManagementSystemForeginTrackingSupervisor" FromRole="EmployeeLeaveDeail" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="EmployeesLeaveTracking">
+    <Key>
+      <PropertyRef Name="RowId" />
+    </Key>
+    <Property Name="RowId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="LeaveFromDate" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="LeaveToDate" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="IsApproved" Type="Boolean" />
+    <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserProfile" Relationship="FSEModel.EmployeeLeaveManagementSystemForegin" FromRole="EmployeesLeaveTracking" ToRole="UserProfile" />
+    <Property Name="SupervisorId" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="FSEEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EmployeeLeaveDeails" EntityType="Self.EmployeeLeaveDeail" />
+    <EntitySet Name="EmployeesLeaveTrackings" EntityType="Self.EmployeesLeaveTracking" />
+    <EntitySet Name="UserProfiles" EntityType="FSEModel.UserProfile" />
+    <AssociationSet Name="EmployeeLeaveManagementSystemForeginTracking" Association="FSEModel.EmployeeLeaveManagementSystemForeginTracking">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="EmployeeLeaveDeail" EntitySet="EmployeeLeaveDeails" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeLeaveManagementSystemForeginTrackingSupervisor" Association="FSEModel.EmployeeLeaveManagementSystemForeginTrackingSupervisor">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="EmployeeLeaveDeail" EntitySet="EmployeeLeaveDeails" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeLeaveManagementSystemForegin" Association="FSEModel.EmployeeLeaveManagementSystemForegin">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="EmployeesLeaveTracking" EntitySet="EmployeesLeaveTrackings" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WorkingArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="EmployeeLeaveDeail" Relationship="FSEModel.EmployeeLeaveManagementSystemForeginTracking" FromRole="UserProfile" ToRole="EmployeeLeaveDeail" />
+    <NavigationProperty Name="EmployeeLeaveDeail1" Relationship="FSEModel.EmployeeLeaveManagementSystemForeginTrackingSupervisor" FromRole="UserProfile" ToRole="EmployeeLeaveDeail" />
+    <NavigationProperty Name="EmployeesLeaveTrackings" Relationship="FSEModel.EmployeeLeaveManagementSystemForegin" FromRole="UserProfile" ToRole="EmployeesLeaveTracking" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="EmployeeLeaveManagementSystemForeginTracking">
+    <End Type="FSEModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+    <End Type="FSEModel.EmployeeLeaveDeail" Role="EmployeeLeaveDeail" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="EmployeeLeaveDeail">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeLeaveManagementSystemForeginTrackingSupervisor">
+    <End Type="FSEModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+    <End Type="FSEModel.EmployeeLeaveDeail" Role="EmployeeLeaveDeail" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="EmployeeLeaveDeail">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeLeaveManagementSystemForegin">
+    <End Type="FSEModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+    <End Type="FSEModel.EmployeesLeaveTracking" Role="EmployeesLeaveTracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="EmployeesLeaveTracking">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
